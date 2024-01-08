@@ -10,12 +10,12 @@ app.get("/", (req, res) => {
   res.send("Api is running...");
 });
 
-app.get("/products", (req, res) => {
+app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
-app.get("/products/:id", (req, res) => {
-  const product = products.find((product) => (product._id = req.params.id));
+app.get("/api/products/:id", (req, res) => {
+  const product = products.find((product) => product._id == req.params.id);
   res.json(product);
 });
 
