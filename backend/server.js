@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
@@ -14,6 +15,9 @@ const app = express();
 // body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// cookie parser middleware
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Api is running...");
