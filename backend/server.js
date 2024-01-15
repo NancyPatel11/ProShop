@@ -4,6 +4,7 @@ const colors = require("colors");
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const productRouter = require("./routes/productRoutes");
+const userRouter = require("./routes/userRoutes");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
