@@ -22,7 +22,10 @@ const cartSlice = createSlice({
       );
 
       if (existingItem) {
-        existingItem.qty += item.qty;
+        // If exists, update quantity
+        state.cartItems = state.cartItems.map((cartItem) =>
+          cartItem._id === existingItem._id ? item : cartItem
+        );
       } else {
         state.cartItems = [...state.cartItems, item];
       }
