@@ -4,8 +4,9 @@ const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
-const productRouter = require("./routes/productRoutes");
-const userRouter = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -23,8 +24,9 @@ app.get("/", (req, res) => {
   res.send("Api is running...");
 });
 
-app.use("/api/products", productRouter);
-app.use("/api/users", userRouter);
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
