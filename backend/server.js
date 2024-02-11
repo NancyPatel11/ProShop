@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
@@ -7,6 +8,7 @@ const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -27,10 +29,14 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.get("/api/config/paypal", (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 );
+
+const dirname = path.resolve(); //set __dirname to current directory
+app.use("/uploads", express.static(path.join(dirname, "/uploads")));
 
 app.use(notFound);
 app.use(errorHandler);
