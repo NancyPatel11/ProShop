@@ -214,7 +214,7 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {/* PAY ORDER PLACEHOLDER */}
+
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
@@ -223,12 +223,12 @@ const OrderScreen = () => {
                     <Loader />
                   ) : (
                     <div>
-                      <Button
+                      {/* <Button
                         style={{ marginBottom: "10px" }}
                         onClick={onApproveTest}
                       >
                         Test Pay Order
-                      </Button>
+                      </Button> */}
 
                       <div>
                         <PayPalButtons
@@ -241,7 +241,7 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
-              {/* {MARK AS DELIVERED PLACEHOLDER} */}
+
               {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
